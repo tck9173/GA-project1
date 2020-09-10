@@ -11,6 +11,6 @@
 
 # Wireframes: ####
 
-!(imageAlt) [https://i.imgur.com/Nvlt0Sn.png] 
+![wireframe] (https://i.imgur.com/Nvlt0Sn.png) 
 # MVP: ####
 # Post-MVP: ####

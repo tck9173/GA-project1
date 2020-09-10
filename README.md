@@ -11,7 +11,14 @@ Remember to tip your bartenders.
 
 Wireframes:
 
+Desktop and tablet:
+
 ![wireframe](https://i.imgur.com/Nvlt0Sn.png) 
+
+Mobile:
+
+![mobilewireframe](https://i.imgur.com/4EcvuS5.png)
+
 
 MVP: 
 
@@ -22,15 +29,25 @@ Game needs a counter to show the rounds won.
 Need two buttons. One to start a round and one to reset the game.
 
 Gameplay:
+
 -One glass will glow, move, or wiggle.
+
 -User clicks correct glass.
+
 -The first glass will glow again, then a new glass will glow. 
+
 -User clicks the shot glasses in the correct order.
+
 -This continues up to a max sequence of 5.
+
 -If at any time the user selects the wrong glass, throw a popup that tells the user they got kicked out of the bar.
+
 -If the user remembers the correct sequence of 5 throw a popup congratulating the user. 
+
+
 
 Post-MVP: 
 
--Option to add a new glass after each round
+-Option to add a new glass after each round.
+
 -Tipping functionality, possibility to attempt a round again

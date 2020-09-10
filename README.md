@@ -49,6 +49,9 @@ Gameplay:
 
 Post-MVP: 
 
+-Rules or instructions page.
+
 -Option to add a new glass after each round.
 
 -Tipping functionality, possibility to attempt a round again
+

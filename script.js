@@ -14,7 +14,7 @@ const newRoundButton = document.querySelector('.newRound')
 newRoundButton.addEventListener('click', function() {
     console.log("Clicked start round button");
     createSequence();
-    //blinkGlasses();
+    setTimeout(function() {blinkGlasses(0);},500);
 })
 
 //Event listener for new game button
@@ -49,52 +49,74 @@ function createSequence(){
 function resetGlasses() {
     for (let i=0; i<glassArray.length; i++){
         glassArray[i].classList.remove('blink');
+        glassArray[i].classList.remove('red');
     }
+}
+
+function redGlasses() {
+    for (let i=0; i<glassArray.length; i++){
+        glassArray[i].classList.add('red');
+    }
+}
+
+function blinkGlasses(i){
+    glassArray[sequenceArray[i]].classList.add('blink');
+    setTimeout(resetGlasses, 900);
+    
 }
 
 //Game Play
 //after round is started, sequence starts and blinks the first glass
 
-// function blinkGlasses(){
-//     for (let i=0; i<=roundCount; i++) {
-//         glassArray[sequenceArray[i]].classList.add('blink');
-//         setTimeout(resetGlasses, 1500);
-//     }
-// }
-
 //player must click glass that just blinked
 for (let i=0; i<glassArray.length; i++) {
     glassArray[i].addEventListener('click', function(){
         clickArray[clickCount]=i;
-        console.log(`Click count: ${clickCount} Round count: ${roundCount}`);
+        //console.log(`Click count: ${clickCount} Round count: ${roundCount}`);
         checkSequence();
-        console.log(`Click count: ${clickCount} Round count: ${roundCount}`);
-        //setTimeout(blinkGlasses, 1500);
+        
     })
 }
-//if player clicks correct glass another glass is added to the array
+
+
+function getBlink(){
+    if (roundCount === 1){
+        setTimeout(function() {blinkGlasses(0);},1000);
+        setTimeout(function() {blinkGlasses(1);},2000);
+    } else if (roundCount === 2) {
+        setTimeout(function() {blinkGlasses(0);},1000);
+        setTimeout(function() {blinkGlasses(1);},2000);
+        setTimeout(function() {blinkGlasses(2);},3000);
+    } 
+}
+
+
+
+
 function checkSequence() {
     if (clickArray[clickCount] === sequenceArray[clickCount]){
         console.log("correct");
         clickCount++;
         if (clickCount === roundCount){
-            clickCount = 0;
-            roundCount++;
-            if (roundCount === maxRound+1){
-                alert("Round completed");
+            if (roundCount === maxRound){
+                alert("Alright, I will pour you another");
                 score++;
+                clickCount=0;
+                roundCount=1;
                 updateScore();
+            } else {
+                getBlink();
+                clickCount = 0;
+                roundCount++; 
             }
         }
     } else {
-        console.log("please try again");
+        alert('Get out of here ya drunk!')
+        for (let i=500; i<=3000; i=i+500) {
+            setTimeout(redGlasses, i);
+            i+=500;
+            setTimeout(resetGlasses, i);
+        }
         newGame();
     }
 }
-//new array is blinked
-
-//Win logic
-//If array length is 5 and player successfully completes round player wins
-//Logic to add score if round is complete
-
-//If player loses throw message or blink glasses red. 

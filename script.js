@@ -3,6 +3,7 @@ let sequenceArray = [];
 let clickCount = 0;
 const glassArray = document.querySelectorAll('.glass');
 let clickArray =[];
+let roundCount = 1;
 
 
 //Event listener for start round button
@@ -10,7 +11,7 @@ const newRoundButton = document.querySelector('.newRound')
 newRoundButton.addEventListener('click', function() {
     console.log("Clicked start round button");
     createSequence();
-    blinkGlasses();
+    //blinkGlasses();
 })
 
 //Event listener for new game button
@@ -38,27 +39,35 @@ function resetGlasses() {
     }
 }
 
-
 //Game Play
 //after round is started, sequence starts and blinks the first glass
-function blinkGlasses(){
-    for (let i=0; i<=clickCount; i++) {
-        glassArray[sequenceArray[i]].classList.add('blink');
-        setTimeout(resetGlasses, 1500);
-    }
-}
+
+// function blinkGlasses(){
+//     for (let i=0; i<=roundCount; i++) {
+//         glassArray[sequenceArray[i]].classList.add('blink');
+//         setTimeout(resetGlasses, 1500);
+//     }
+// }
+
 //player must click glass that just blinked
 for (let i=0; i<glassArray.length; i++) {
     glassArray[i].addEventListener('click', function(){
         clickArray[clickCount]=i;
+        console.log(`Click count: ${clickCount} Round count: ${roundCount}`);
         checkSequence();
-        clickCount++;
+        console.log(`Click count: ${clickCount} Round count: ${roundCount}`);
+        //setTimeout(blinkGlasses, 1500);
     })
 }
 //if player clicks correct glass another glass is added to the array
 function checkSequence() {
     if (clickArray[clickCount] === sequenceArray[clickCount]){
         console.log("correct");
+        clickCount++;
+        if (clickCount === roundCount){
+            clickCount = 0;
+            roundCount++;
+        }
     } else {
         console.log("please try again");
     }

@@ -6,16 +6,16 @@ let roundCount = 1;
 const scoreDisplay = document.querySelector('#score');
 let score = 0;
 scoreDisplay.innerText = score;
-const maxRound = 3;
+const maxRound = 5;
+let gameStarted = false;
 
-//Event listener for start round button
 const newRoundButton = document.querySelector('.newRound')
 newRoundButton.addEventListener('click', function() {
+
     createSequence();
     setTimeout(function() {blinkGlasses(0);},500);
 })
 
-//Event listener for new game button
 const newGameButton = document.querySelector('.newGame');
 newGameButton.addEventListener('click', function() {
     newGame();
@@ -33,9 +33,6 @@ function updateScore() {
     scoreDisplay.innerText = score;
 }
 
-//Game logic
-//Array to store sequence
-//Sequence will be generated randomly
 function createSequence(){
     for (let i=0; i<maxRound; i++) {
     sequenceArray[i] = Math.floor(Math.random()*glassArray.length);
@@ -69,10 +66,7 @@ function clicked(i) {
             glassArray[i].classList.remove('clicked');
         }
 }
-//Game Play
-//after round is started, sequence starts and blinks the first glass
 
-//player must click glass that just blinked
 for (let i=0; i<glassArray.length; i++) {
     glassArray[i].addEventListener('click', function(){
         clickArray[clickCount]=i;
@@ -83,20 +77,13 @@ for (let i=0; i<glassArray.length; i++) {
     })
 }
 
-
 function getBlink(){
-    if (roundCount === 1){
-        setTimeout(function() {blinkGlasses(0);},1000);
-        setTimeout(function() {blinkGlasses(1);},2000);
-    } else if (roundCount === 2) {
-        setTimeout(function() {blinkGlasses(0);},1000);
-        setTimeout(function() {blinkGlasses(1);},2000);
-        setTimeout(function() {blinkGlasses(2);},3000);
-    } 
+    let timer=1000;
+    for (let i=0; i<= roundCount; i++){
+        setTimeout(function() {blinkGlasses(i);},timer);
+        timer +=1000;
+    }
 }
-
-
-
 
 function checkSequence() {
     if (clickArray[clickCount] === sequenceArray[clickCount]){

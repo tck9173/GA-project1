@@ -1,8 +1,17 @@
 console.log('up and running');
 
 //Event listener for start round button
+const newRoundButton = document.querySelector('.newRound')
+newRoundButton.addEventListener('click', function() {
+    console.log("Clicked start round button");
+})
 
 //Event listener for new game button
+const newGameButton = document.querySelector('.newGame');
+newGameButton.addEventListener('click', function() {
+    console.log("Clicked new game button");
+})
+
 
 //Game logic
 //Array to store sequence

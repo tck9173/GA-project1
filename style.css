@@ -1,8 +1,24 @@
 body {
     display: flex;
     flex-direction: column;
-    background: lemonchiffon;
+    background: #335C67;
     text-align: center;
+    color: white;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+h2 {
+    font-size: 25px;
+}
+
+button {
+    color: white;
+    background: #540b0E;
+    font-size: 20px;
+    border-radius: 5px;
 }
 
 footer {
@@ -16,7 +32,7 @@ footer {
 }
 
 .glass {
-    background: lightslategray;
+    background: #E09F3E;
     border-radius: 20px;
     height: 150px;
     width: 100px;
@@ -24,9 +40,13 @@ footer {
 }
 
 .blink {
-    background: yellow;
+    background: #FFF3B0;
 }
 
 .red {
-    background: red;
+    background: #9E2A2B;
+}
+
+.controls {
+    margin: 15px;
 }

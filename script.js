@@ -1,4 +1,3 @@
-console.log('up and running');
 let sequenceArray = [];
 let clickCount = 0;
 const glassArray = document.querySelectorAll('.glass');
@@ -12,7 +11,6 @@ const maxRound = 3;
 //Event listener for start round button
 const newRoundButton = document.querySelector('.newRound')
 newRoundButton.addEventListener('click', function() {
-    console.log("Clicked start round button");
     createSequence();
     setTimeout(function() {blinkGlasses(0);},500);
 })
@@ -20,7 +18,6 @@ newRoundButton.addEventListener('click', function() {
 //Event listener for new game button
 const newGameButton = document.querySelector('.newGame');
 newGameButton.addEventListener('click', function() {
-    console.log("Clicked new game button");
     newGame();
 })
 
@@ -43,7 +40,7 @@ function createSequence(){
     for (let i=0; i<maxRound; i++) {
     sequenceArray[i] = Math.floor(Math.random()*glassArray.length);
     }
-    console.table(sequenceArray);
+    //console.table(sequenceArray);
 }
 
 function resetGlasses() {
@@ -99,7 +96,7 @@ function checkSequence() {
         clickCount++;
         if (clickCount === roundCount){
             if (roundCount === maxRound){
-                alert("Alright, I will pour you another");
+                confirm("Alright, I will pour you another");
                 score++;
                 clickCount=0;
                 roundCount=1;
@@ -111,12 +108,12 @@ function checkSequence() {
             }
         }
     } else {
-        alert('Get out of here ya drunk!')
         for (let i=500; i<=3000; i=i+500) {
             setTimeout(redGlasses, i);
             i+=500;
             setTimeout(resetGlasses, i);
         }
+        setTimeout(function() {alert("Get out of here ya drunk!");}, 3100);
         newGame();
     }
 }

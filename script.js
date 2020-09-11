@@ -4,7 +4,10 @@ let clickCount = 0;
 const glassArray = document.querySelectorAll('.glass');
 let clickArray =[];
 let roundCount = 1;
-
+const scoreDisplay = document.querySelector('#score');
+let score = 0;
+scoreDisplay.innerText = score;
+const maxRound = 3;
 
 //Event listener for start round button
 const newRoundButton = document.querySelector('.newRound')
@@ -18,16 +21,26 @@ newRoundButton.addEventListener('click', function() {
 const newGameButton = document.querySelector('.newGame');
 newGameButton.addEventListener('click', function() {
     console.log("Clicked new game button");
-    clickArray = [];
-    clickCount=0;
+    newGame();
 })
 
+function newGame(){
+    clickArray = [];
+    clickCount=0;
+    roundCount=1;
+    score=0;
+    updateScore();
+}
+
+function updateScore() {
+    scoreDisplay.innerText = score;
+}
 
 //Game logic
 //Array to store sequence
 //Sequence will be generated randomly
 function createSequence(){
-    for (let i=0; i<5; i++) {
+    for (let i=0; i<maxRound; i++) {
     sequenceArray[i] = Math.floor(Math.random()*glassArray.length);
     }
     console.table(sequenceArray);
@@ -67,9 +80,15 @@ function checkSequence() {
         if (clickCount === roundCount){
             clickCount = 0;
             roundCount++;
+            if (roundCount === maxRound+1){
+                alert("Round completed");
+                score++;
+                updateScore();
+            }
         }
     } else {
         console.log("please try again");
+        newGame();
     }
 }
 //new array is blinked

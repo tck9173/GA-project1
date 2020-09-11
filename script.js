@@ -1,11 +1,12 @@
-let sequenceArray = [];
-let clickCount = 0;
 const glassArray = document.querySelectorAll('.glass');
+const scoreDisplay = document.querySelector('#score');
+
 let clickArray =[];
 let roundCount = 1;
-const scoreDisplay = document.querySelector('#score');
+let sequenceArray = [];
+let clickCount = 0;
 let score = 0;
-scoreDisplay.innerText = score;
+updateScore();
 const maxRound = 5;
 let gameStarted = false;
 
@@ -38,7 +39,6 @@ function createSequence(){
     for (let i=0; i<maxRound; i++) {
     sequenceArray[i] = Math.floor(Math.random()*glassArray.length);
     }
-    //console.table(sequenceArray);
 }
 
 function resetGlasses() {

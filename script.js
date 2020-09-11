@@ -11,7 +11,7 @@ let gameStarted = false;
 
 const newRoundButton = document.querySelector('.newRound')
 newRoundButton.addEventListener('click', function() {
-
+    gameStarted = true;
     createSequence();
     setTimeout(function() {blinkGlasses(0);},500);
 })
@@ -27,6 +27,7 @@ function newGame(){
     roundCount=1;
     score=0;
     updateScore();
+    gameStarted = false;
 }
 
 function updateScore() {
@@ -73,7 +74,6 @@ for (let i=0; i<glassArray.length; i++) {
         clicked(i);
         //console.log(`Click count: ${clickCount} Round count: ${roundCount}`);
         setTimeout(checkSequence,200);
-        
     })
 }
 
@@ -86,29 +86,32 @@ function getBlink(){
 }
 
 function checkSequence() {
-    if (clickArray[clickCount] === sequenceArray[clickCount]){
-        console.log("correct");
-        clickCount++;
-        if (clickCount === roundCount){
-            if (roundCount === maxRound){
-                confirm("Alright, I will pour you another");
-                score++;
-                clickCount=0;
-                roundCount=1;
-                updateScore();
-            } else {
-                getBlink();
-                clickCount = 0;
-                roundCount++; 
+    if (gameStarted) {
+        if (clickArray[clickCount] === sequenceArray[clickCount]){
+            console.log("correct");
+            clickCount++;
+            if (clickCount === roundCount){
+                if (roundCount === maxRound){
+                    confirm("Alright, I will pour you another");
+                    gameStarted=false;
+                    score++;
+                    clickCount=0;
+                    roundCount=1;
+                    updateScore();
+                } else {
+                    getBlink();
+                    clickCount = 0;
+                    roundCount++; 
+                }
             }
+        } else {
+            for (let i=500; i<=3000; i=i+500) {
+                setTimeout(redGlasses, i);
+                i+=500;
+                setTimeout(resetGlasses, i);
+            }
+            setTimeout(function() {alert("Get out of here ya drunk!");}, 3100);
+            newGame();
         }
-    } else {
-        for (let i=500; i<=3000; i=i+500) {
-            setTimeout(redGlasses, i);
-            i+=500;
-            setTimeout(resetGlasses, i);
-        }
-        setTimeout(function() {alert("Get out of here ya drunk!");}, 3100);
-        newGame();
     }
 }

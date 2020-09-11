@@ -62,6 +62,13 @@ function blinkGlasses(i){
     
 }
 
+function clicked(i) {
+    glassArray[i].classList.add("clicked");
+        setTimeout(function() {clickedRemove(i);}, 150);
+        function clickedRemove(i) {
+            glassArray[i].classList.remove('clicked');
+        }
+}
 //Game Play
 //after round is started, sequence starts and blinks the first glass
 
@@ -69,8 +76,9 @@ function blinkGlasses(i){
 for (let i=0; i<glassArray.length; i++) {
     glassArray[i].addEventListener('click', function(){
         clickArray[clickCount]=i;
+        clicked(i);
         //console.log(`Click count: ${clickCount} Round count: ${roundCount}`);
-        checkSequence();
+        setTimeout(checkSequence,200);
         
     })
 }

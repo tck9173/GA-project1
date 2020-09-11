@@ -1,4 +1,9 @@
+header {
+    background: #1d343a;
+}
+
 body {
+    margin: 0;
     display: flex;
     flex-direction: column;
     background: #335C67;
@@ -49,4 +54,8 @@ footer {
 
 .controls {
     margin: 15px;
+}
+
+.clicked {
+    background: #996c29;
 }

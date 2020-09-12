@@ -39,6 +39,8 @@ footer {
 
 .glass {
     background: #E09F3E;
+    border: solid black 2px;
+    border-top: solid whitesmoke 15px;
     border-radius: 20px;
     height: 150px;
     width: 100px;

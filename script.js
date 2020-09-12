@@ -10,6 +10,8 @@ let score = 0;
 updateScore();
 const maxRound = 3;
 let gameStarted = false;
+let glassCount = 3;
+let glassIndex = 2;
 
 const newRoundButton = document.querySelector('.newRound')
 newRoundButton.addEventListener('click', function() {
@@ -69,6 +71,10 @@ function clicked(i) {
 }
 
 for (let i=0; i<glassArray.length; i++) {
+    glassEventListener(i);
+}
+
+function glassEventListener(i) {
     glassArray[i].addEventListener('click', function(){
         clickArray[clickCount]=i;
         clicked(i);
@@ -94,8 +100,13 @@ function roundComplete() {
     newGlass.classList.add('glass');
     barDiv.appendChild(newGlass);
     glassArray = document.querySelectorAll('.glass');
+    glassCount = glassArray.length;
+    glassIndex = glassCount - 1;
+    glassEventListener(glassIndex);
     console.log(glassArray);
 }
+
+
 
 function checkSequence() {
     if (gameStarted) {

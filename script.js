@@ -1,5 +1,6 @@
-const glassArray = document.querySelectorAll('.glass');
+let glassArray = document.querySelectorAll('.glass');
 const scoreDisplay = document.querySelector('#score');
+const barDiv = document.querySelector('.bar');
 
 let clickArray =[];
 let roundCount = 1;
@@ -7,7 +8,7 @@ let sequenceArray = [];
 let clickCount = 0;
 let score = 0;
 updateScore();
-const maxRound = 5;
+const maxRound = 3;
 let gameStarted = false;
 
 const newRoundButton = document.querySelector('.newRound')
@@ -57,7 +58,6 @@ function redGlasses() {
 function blinkGlasses(i){
     glassArray[sequenceArray[i]].classList.add('blink');
     setTimeout(resetGlasses, 900);
-    
 }
 
 function clicked(i) {
@@ -85,6 +85,18 @@ function getBlink(){
     }
 }
 
+function roundComplete() {
+    gameStarted=false;
+    score++;
+    clickCount=0;
+    roundCount=1;
+    let newGlass = document.createElement('div');
+    newGlass.classList.add('glass');
+    barDiv.appendChild(newGlass);
+    glassArray = document.querySelectorAll('.glass');
+    console.log(glassArray);
+}
+
 function checkSequence() {
     if (gameStarted) {
         if (clickArray[clickCount] === sequenceArray[clickCount]){
@@ -93,10 +105,7 @@ function checkSequence() {
             if (clickCount === roundCount){
                 if (roundCount === maxRound){
                     confirm("Alright, I will pour you another");
-                    gameStarted=false;
-                    score++;
-                    clickCount=0;
-                    roundCount=1;
+                    roundComplete();
                     updateScore();
                 } else {
                     getBlink();

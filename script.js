@@ -32,6 +32,10 @@ function newGame(){
     score=0;
     updateScore();
     gameStarted = false;
+    while(glassArray.length>3){
+        glassArray[1].remove();
+        glassArray = document.querySelectorAll('.glass');
+    }
 }
 
 function updateScore() {
@@ -96,14 +100,19 @@ function roundComplete() {
     score++;
     clickCount=0;
     roundCount=1;
-    let newGlass = document.createElement('div');
-    newGlass.classList.add('glass');
-    barDiv.appendChild(newGlass);
-    glassArray = document.querySelectorAll('.glass');
-    glassCount = glassArray.length;
-    glassIndex = glassCount - 1;
-    glassEventListener(glassIndex);
-    console.log(glassArray);
+    if (score<=5){
+        confirm("Alright, I will pour you another");
+        let newGlass = document.createElement('div');
+        newGlass.classList.add('glass');
+        barDiv.appendChild(newGlass);
+        glassArray = document.querySelectorAll('.glass');
+        glassCount = glassArray.length;
+        glassIndex = glassCount - 1;
+        glassEventListener(glassIndex);
+    } else {
+        alert("I think thats enough for one night. Come back tomorrow.")
+        newGame();
+    }
 }
 
 
@@ -115,7 +124,6 @@ function checkSequence() {
             clickCount++;
             if (clickCount === roundCount){
                 if (roundCount === maxRound){
-                    confirm("Alright, I will pour you another");
                     roundComplete();
                     updateScore();
                 } else {

@@ -31,6 +31,11 @@ footer {
     bottom: 0;
 }
 
+p {
+    margin: 0;
+    font-size: 14px;
+}
+
 .bar {
     display: flex;
     justify-content: center;
@@ -69,4 +74,23 @@ footer {
 
 .easyMode {
     background: rgb(10, 83, 10)
+}
+
+.inputs {
+    display: flex;
+    justify-content: center;
+}
+
+input {
+    margin: 5px;
+}
+
+#maxRoundInput {
+    width: 120px;
+    border-radius:5px;
+}
+
+#maxScoreInput {
+    width: 70px;
+    border-radius:5px;
 }

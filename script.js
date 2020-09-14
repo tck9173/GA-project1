@@ -8,7 +8,8 @@ let sequenceArray = [];
 let clickCount = 0;
 let score = 0;
 updateScore();
-const maxRound = 3;
+let maxRound = 3;
+let maxScore = 5;
 let gameStarted = false;
 let glassCount = 3;
 let glassIndex = 2;
@@ -101,7 +102,7 @@ function roundComplete() {
     score++;
     clickCount=0;
     roundCount=1;
-    if (score<=5){
+    if (score<=maxScore){
         confirm("Alright, I will pour you another");
         if (gameMode === "hard" && !gameStarted){
             let newGlass = document.createElement('div');

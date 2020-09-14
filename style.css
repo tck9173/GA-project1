@@ -110,6 +110,8 @@ input {
 #formSubmit {
     display: flex;
     align-self: center;
+    background: #E09F3E;
+    border-radius: 5px;
 }
 
 .instructions p {

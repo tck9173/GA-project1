@@ -8,7 +8,7 @@ let sequenceArray = [];
 let clickCount = 0;
 let score = 0;
 updateScore();
-let maxRound = 3;
+let maxRound = 5;
 let maxScore = 5;
 let gameStarted = false;
 let glassCount = 3;
@@ -114,7 +114,7 @@ function roundComplete() {
             glassEventListener(glassIndex);
         }
     } else {
-        alert("I think thats enough for one night. Come back tomorrow.")
+        alert("You 'win' but I think thats enough for one night. Come back tomorrow.")
         newGame();
     }
 }

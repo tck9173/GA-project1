@@ -28,7 +28,9 @@ button {
 
 footer {
     position: fixed;
-    bottom: 0;
+    display:flex;
+    align-self: center;
+    bottom: 10px;
 }
 
 p {
@@ -93,4 +95,9 @@ input {
 #maxScoreInput {
     width: 70px;
     border-radius:5px;
+}
+
+#formSubmit {
+    display: flex;
+    align-self: center;
 }

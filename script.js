@@ -12,6 +12,7 @@ const maxRound = 3;
 let gameStarted = false;
 let glassCount = 3;
 let glassIndex = 2;
+let gameMode = "easy";
 
 const newRoundButton = document.querySelector('.newRound')
 newRoundButton.addEventListener('click', function() {
@@ -102,13 +103,15 @@ function roundComplete() {
     roundCount=1;
     if (score<=5){
         confirm("Alright, I will pour you another");
-        let newGlass = document.createElement('div');
-        newGlass.classList.add('glass');
-        barDiv.appendChild(newGlass);
-        glassArray = document.querySelectorAll('.glass');
-        glassCount = glassArray.length;
-        glassIndex = glassCount - 1;
-        glassEventListener(glassIndex);
+        if (gameMode === "hard" && !gameStarted){
+            let newGlass = document.createElement('div');
+            newGlass.classList.add('glass');
+            barDiv.appendChild(newGlass);
+            glassArray = document.querySelectorAll('.glass');
+            glassCount = glassArray.length;
+            glassIndex = glassCount - 1;
+            glassEventListener(glassIndex);
+        }
     } else {
         alert("I think thats enough for one night. Come back tomorrow.")
         newGame();
@@ -143,3 +146,19 @@ function checkSequence() {
         }
     }
 }
+
+gameModeButton = document.querySelector('.gameMode');
+
+gameModeButton.addEventListener('click', function(){
+    if (gameModeButton.classList.contains('easyMode')){
+        gameModeButton.classList.remove('easyMode');
+        gameModeButton.classList.add('hardMode');
+        gameModeButton.innerText = 'Hard Mode';
+        gameMode = "hard"
+    } else if(gameModeButton.classList.contains('hardMode')){
+        gameModeButton.classList.remove('hardMode');
+        gameModeButton.classList.add('easyMode');
+        gameModeButton.innerText = "Easy Mode";
+        gameMode = "easy"
+    }
+})

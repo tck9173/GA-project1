@@ -62,3 +62,11 @@ footer {
 .clicked {
     background: #996c29;
 }
+
+.hardMode {
+    background: #540b0E;
+}
+
+.easyMode {
+    background: rgb(10, 83, 10)
+}

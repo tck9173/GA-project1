@@ -155,11 +155,19 @@ gameModeButton.addEventListener('click', function(){
         gameModeButton.classList.remove('easyMode');
         gameModeButton.classList.add('hardMode');
         gameModeButton.innerText = 'Hard Mode';
-        gameMode = "hard"
+        gameMode = "hard";
     } else if(gameModeButton.classList.contains('hardMode')){
         gameModeButton.classList.remove('hardMode');
         gameModeButton.classList.add('easyMode');
         gameModeButton.innerText = "Easy Mode";
-        gameMode = "easy"
+        gameMode = "easy";
     }
+})
+
+const inputSubmitButton = document.querySelector('#formSubmit');
+
+inputSubmitButton.addEventListener('click', function(){
+    event.preventDefault();
+    maxRound = parseInt(document.querySelector('#maxRoundInput').value);
+    maxScore = parseInt(document.querySelector('#maxScoreInput').value);
 })

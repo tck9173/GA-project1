@@ -1,5 +1,6 @@
 header {
     background: #1d343a;
+    height: 120px;
 }
 
 body {
@@ -13,6 +14,7 @@ body {
 
 h1 {
     font-size: 40px;
+    margin: 25px 0 10px 0;
 }
 
 h2 {
@@ -29,8 +31,11 @@ button {
 footer {
     position: fixed;
     display:flex;
-    align-self: center;
-    bottom: 10px;
+    justify-items: center;
+    bottom: 0px;
+    background: #1d343a;
+    width: 100%;
+    padding: 10px;
 }
 
 p {
@@ -38,6 +43,11 @@ p {
     font-size: 14px;
 }
 
+a {
+    text-decoration-style: none;
+    color: white;
+    margin: 15px;
+}
 .bar {
     display: flex;
     justify-content: center;
@@ -101,3 +111,17 @@ input {
     display: flex;
     align-self: center;
 }
+
+.instructions p {
+    margin:10px 0;
+}
+
+.instructions {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    max-width: 500px;
+    text-align: left;
+    margin-bottom: 40px;
+}
+

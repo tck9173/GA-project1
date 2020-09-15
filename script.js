@@ -22,6 +22,7 @@ let glassIndex = 2;
 let gameMode = "easy";
 let balance = 100;
 let tipInput;
+let requiredTip;
 
 //Create board
 updateScore();
@@ -70,6 +71,7 @@ function updateScore() {
 
 //Function to create random sequence for use in game play
 function createSequence(){
+    requiredTip = Math.floor(Math.random() * balance);
     for (let i=0; i<maxRound; i++) {
     sequenceArray[i] = Math.floor(Math.random()*glassArray.length);
     }
@@ -186,11 +188,11 @@ function getTip(){
     if (tipInput == null || tipInput =="") {
         setTimeout(function() {alert("Get out of here ya drunk!");}, 1000);
         newGame();
-    } else if (tipInput >= 20 && tipInput <= balance) {
+    } else if (tipInput >= requiredTip && tipInput <= balance) {
         balance = balance - tipInput;
         roundComplete();
         updateScore();
-    } else if (tipInput < 20 && tipInput <= balance) {
+    } else if (tipInput < requiredTip && tipInput <= balance) {
         alert('You were not able to convince the bartender and got kicked out of the bar. Please start a new game.')
         newGame();
     } else if (tipInput > balance){

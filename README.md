@@ -4,7 +4,7 @@ Title: Beat the Bartender
 
 Description: So you think you need another drink? Not so fast. First you need to pass this test...
 
-This is the classic Simon game but with a twist. The game starts with three shot glasses for the first round. The bartender will point to a shot glass and you have to remember which glass they pointed to. Each round you have to repeat the sequence starting with one shot glass working up to five. If you successfully remember the full sequence of five you are allowed another drink (Possible hard mode: BUT that glass is added to the game board for the next round. You are allowed more drinks as long as you can remember the sequence.) If you do not remember the sequence you are kicked out of the bar!
+This is the classic Simon game but with a twist. The game starts with three glasses for the first round. The bartender will point to a glass and you have to remember which glass they pointed to. Each round you have to repeat the sequence starting with one glass working up to five. If you successfully remember the full sequence of five you are allowed another drink (Hard mode: BUT another glass is added to the game board for the next round. You are allowed more drinks as long as you can remember the sequence.) If you do not remember the sequence you are kicked out of the bar!
 
 Remember to tip your bartenders. 
 
@@ -52,7 +52,7 @@ Approach taken:
 
 I broke this project down into the smallest possible functionality "blocks". The first functionality I needed was basic gameplay, but to do that I needed a game board. After the gameboard was created I needed a random sequence to follow. I also needed a way to check if the button clicked matched the random sequence. 
 
-I continued through this project by adding small bits of functionality one at a time until I had a completed project. Something that I did throughout this project was "fake" the gameplay before I have had the logic coded. I would console.log variables to ensure functions were working properly before incorporating them into the game. 
+I continued through this project by adding small bits of functionality one at a time until I had a completed project. Something that I did throughout this project was "fake" the gameplay before I had the logic coded. I would console.log variables to ensure functions were working properly before incorporating them into the game. 
 
 Installation instructions:
 

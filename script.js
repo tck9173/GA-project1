@@ -2,6 +2,10 @@ let glassArray = document.querySelectorAll('.glass');
 const scoreDisplay = document.querySelector('#score');
 const barDiv = document.querySelector('.bar');
 const gameModeButton = document.querySelector('.gameMode');
+const newGameButton = document.querySelector('.newGame');
+const balanceDisplay = document.querySelector('#balance');
+const inputSubmitButton = document.querySelector('#formSubmit');
+const newRoundButton = document.querySelector('.newRound')
 
 let clickArray =[];
 let roundCount = 1;
@@ -17,21 +21,20 @@ let glassIndex = 2;
 let gameMode = "easy";
 
 let balance = 100;
-const balanceDisplay = document.querySelector('#balance');
-const inputSubmitButton = document.querySelector('#formSubmit');-
+let tipInput;
 
 updateScore();
 
-let tipInput;
+for (let i=0; i<glassArray.length; i++) {
+    glassEventListener(i);
+}
 
-const newRoundButton = document.querySelector('.newRound')
 newRoundButton.addEventListener('click', function() {
     gameStarted = true;
     createSequence();
     setTimeout(function() {blinkGlasses(0);},500);
 })
 
-const newGameButton = document.querySelector('.newGame');
 newGameButton.addEventListener('click', function() {
     newGame();
 })
@@ -92,10 +95,6 @@ function clicked(i) {
         function clickedRemove(i) {
             glassArray[i].classList.remove('clicked');
         }
-}
-
-for (let i=0; i<glassArray.length; i++) {
-    glassEventListener(i);
 }
 
 function glassEventListener(i) {

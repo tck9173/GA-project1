@@ -158,7 +158,6 @@ function roundComplete() {
 function checkSequence() {
     if (gameStarted) {
         if (clickArray[clickCount] === sequenceArray[clickCount]){
-            console.log("correct");
             clickCount++;
             if (clickCount === roundCount){
                 if (roundCount === maxRound){

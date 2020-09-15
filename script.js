@@ -1,3 +1,4 @@
+//Query selectors
 let glassArray = document.querySelectorAll('.glass');
 const scoreDisplay = document.querySelector('#score');
 const barDiv = document.querySelector('.bar');
@@ -7,28 +8,28 @@ const balanceDisplay = document.querySelector('#balance');
 const inputSubmitButton = document.querySelector('#formSubmit');
 const newRoundButton = document.querySelector('.newRound')
 
+//Initialize all needed variables
 let clickArray =[];
 let roundCount = 1;
 let sequenceArray = [];
 let clickCount = 0;
 let score = 0;
-
 let maxRound = 5;
 let maxScore = 5;
 let gameStarted = false;
 let glassCount = 3;
 let glassIndex = 2;
 let gameMode = "easy";
-
 let balance = 100;
 let tipInput;
 
+//Create board
 updateScore();
-
 for (let i=0; i<glassArray.length; i++) {
     glassEventListener(i);
 }
 
+//Event listeners for all buttons
 newRoundButton.addEventListener('click', function() {
     gameStarted = true;
     createSequence();
@@ -46,6 +47,7 @@ inputSubmitButton.addEventListener('click', function(){
 
 gameModeButton.addEventListener('click', toggleGameMode);
 
+//Function to reset several variables for a new game and reset game board if hard mode was selected
 function newGame(){
     clickArray = [];
     clickCount=0;
@@ -60,17 +62,20 @@ function newGame(){
     }
 }
 
+//Function to update score display and balance display
 function updateScore() {
     scoreDisplay.innerText = score;
     balanceDisplay.innerText = balance;
 }
 
+//Function to create random sequence for use in game play
 function createSequence(){
     for (let i=0; i<maxRound; i++) {
     sequenceArray[i] = Math.floor(Math.random()*glassArray.length);
     }
 }
 
+//Function to return glasses to normal state 
 function resetGlasses() {
     for (let i=0; i<glassArray.length; i++){
         glassArray[i].classList.remove('blink');
@@ -78,17 +83,20 @@ function resetGlasses() {
     }
 }
 
+//Function to make glasses red
 function redGlasses() {
     for (let i=0; i<glassArray.length; i++){
         glassArray[i].classList.add('red');
     }
 }
 
+//Function to make the called glass blink
 function blinkGlasses(i){
     glassArray[sequenceArray[i]].classList.add('blink');
     setTimeout(resetGlasses, 900);
 }
 
+//Function to quickly bink a glass when clicked
 function clicked(i) {
     glassArray[i].classList.add("clicked");
         setTimeout(function() {clickedRemove(i);}, 150);
@@ -97,6 +105,7 @@ function clicked(i) {
         }
 }
 
+//Function to keep track of what glasses were clicked
 function glassEventListener(i) {
     glassArray[i].addEventListener('click', function(){
         clickArray[clickCount]=i;
@@ -105,6 +114,7 @@ function glassEventListener(i) {
     })
 }
 
+//Function to blink glasses in sequence
 function getBlink(){
     let timer=1000;
     for (let i=0; i<= roundCount; i++){
@@ -113,6 +123,7 @@ function getBlink(){
     }
 }
 
+//Function to complete round if user selects correct sequence
 function roundComplete() {
     gameStarted=false;
     score++;
@@ -141,6 +152,7 @@ function roundComplete() {
     }
 }
 
+//Function to check if user selected the correct sequence
 function checkSequence() {
     if (gameStarted) {
         if (clickArray[clickCount] === sequenceArray[clickCount]){
@@ -168,6 +180,7 @@ function checkSequence() {
     }
 }
 
+//Function to get a tip from user if user did not select correct sequence
 function getTip(){
     tipInput = prompt("You guessed incorrectly. Do you wish to try to convince the bartender to let you try again? Enter in your tip:")
     if (tipInput == null || tipInput =="") {
@@ -186,6 +199,7 @@ function getTip(){
     }
 }
 
+//Function to toggle game mode from hard to easy
 function toggleGameMode() {
     if (gameModeButton.classList.contains('easyMode')){
         gameModeButton.classList.remove('easyMode');
@@ -200,6 +214,7 @@ function toggleGameMode() {
     }
 }
 
+//Function to change game options if submit is clicked
 function inputSubmits() {
     let maxRoundInput = parseInt(document.querySelector('#maxRoundInput').value);
     let maxScoreInput = parseInt(document.querySelector('#maxScoreInput').value);

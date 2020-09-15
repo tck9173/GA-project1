@@ -39,6 +39,7 @@ function newGame(){
     clickCount=0;
     roundCount=1;
     score=0;
+    balance = 100;
     updateScore();
     gameStarted = false;
     while(glassArray.length>3){
@@ -109,20 +110,25 @@ function roundComplete() {
     score++;
     clickCount=0;
     roundCount=1;
-    if (score<=maxScore && balance>=5){
-        balance -= 5;
-        confirm("Alright, I will pour you another");
-        if (gameMode === "hard" && !gameStarted){
-            let newGlass = document.createElement('div');
-            newGlass.classList.add('glass');
-            barDiv.appendChild(newGlass);
-            glassArray = document.querySelectorAll('.glass');
-            glassCount = glassArray.length;
-            glassIndex = glassCount - 1;
-            glassEventListener(glassIndex);
+    if (balance >= 5) {
+        if (score<=maxScore){
+            balance -= 5;
+            confirm("Alright, I will pour you another");
+            if (gameMode === "hard" && !gameStarted){
+                let newGlass = document.createElement('div');
+                newGlass.classList.add('glass');
+                barDiv.appendChild(newGlass);
+                glassArray = document.querySelectorAll('.glass');
+                glassCount = glassArray.length;
+                glassIndex = glassCount - 1;
+                glassEventListener(glassIndex);
+            }
+        } else {
+            alert("You 'win' but I think thats enough for one night. Come back tomorrow.")
+            newGame();
         }
     } else {
-        alert("You 'win' but I think thats enough for one night. Come back tomorrow.")
+        alert("You do not have enough money! Please start a new game.")
         newGame();
     }
 }
@@ -161,12 +167,16 @@ function getTip(){
     if (tipInput == null || tipInput =="") {
         setTimeout(function() {alert("Get out of here ya drunk!");}, 1000);
         newGame();
-    } else if (tipInput >= 20 && tipInput < balance) {
+    } else if (tipInput >= 20 && tipInput <= balance) {
         balance = balance - tipInput;
         roundComplete();
         updateScore();
-    } else if (tipInput < 20 && tipInput < balance) {
+    } else if (tipInput < 20 && tipInput <= balance) {
         alert('You were not able to convince the bartender and got kicked out of the bar. Please start a new game.')
+        newGame();
+    } else if (tipInput > balance){
+        alert('You do not have that much money so you got kicked out of the bar. Please start a new game.');
+        newGame();
     }
 }
 

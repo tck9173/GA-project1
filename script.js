@@ -109,7 +109,7 @@ function roundComplete() {
     score++;
     clickCount=0;
     roundCount=1;
-    if (score<=maxScore){
+    if (score<=maxScore && balance>=5){
         balance -= 5;
         confirm("Alright, I will pour you another");
         if (gameMode === "hard" && !gameStarted){
@@ -161,11 +161,11 @@ function getTip(){
     if (tipInput == null || tipInput =="") {
         setTimeout(function() {alert("Get out of here ya drunk!");}, 1000);
         newGame();
-    } else if (tipInput >= 20) {
+    } else if (tipInput >= 20 && tipInput < balance) {
         balance = balance - tipInput;
         roundComplete();
         updateScore();
-    } else if (tipInput < 20) {
+    } else if (tipInput < 20 && tipInput < balance) {
         alert('You were not able to convince the bartender and got kicked out of the bar. Please start a new game.')
     }
 }

@@ -20,6 +20,8 @@ const balanceDisplay = document.querySelector('#balance');
 
 updateScore();
 
+let tipInput
+
 const newRoundButton = document.querySelector('.newRound')
 newRoundButton.addEventListener('click', function() {
     gameStarted = true;
@@ -148,9 +150,23 @@ function checkSequence() {
                 i+=500;
                 setTimeout(resetGlasses, i);
             }
-            setTimeout(function() {alert("Get out of here ya drunk!");}, 3100);
-            newGame();
+            setTimeout(getTip, 3100)
+            
         }
+    }
+}
+
+function getTip(){
+    tipInput = prompt("You guessed incorrectly. Do you wish to try to convince the bartender to let you try again? Enter in your tip:")
+    if (tipInput == null || tipInput =="") {
+        setTimeout(function() {alert("Get out of here ya drunk!");}, 1000);
+        newGame();
+    } else if (tipInput >= 20) {
+        balance = balance - tipInput;
+        roundComplete();
+        updateScore();
+    } else if (tipInput < 20) {
+        alert('You were not able to convince the bartender and got kicked out of the bar. Please start a new game.')
     }
 }
 

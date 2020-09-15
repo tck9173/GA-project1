@@ -1,6 +1,7 @@
 let glassArray = document.querySelectorAll('.glass');
 const scoreDisplay = document.querySelector('#score');
 const barDiv = document.querySelector('.bar');
+const gameModeButton = document.querySelector('.gameMode');
 
 let clickArray =[];
 let roundCount = 1;
@@ -17,10 +18,11 @@ let gameMode = "easy";
 
 let balance = 100;
 const balanceDisplay = document.querySelector('#balance');
+const inputSubmitButton = document.querySelector('#formSubmit');-
 
 updateScore();
 
-let tipInput
+let tipInput;
 
 const newRoundButton = document.querySelector('.newRound')
 newRoundButton.addEventListener('click', function() {
@@ -35,9 +37,11 @@ newGameButton.addEventListener('click', function() {
 })
 
 inputSubmitButton.addEventListener('click', function(){
-    event.preventDefault()
-    inputSubmits()
+    event.preventDefault();
+    inputSubmits();
 })
+
+gameModeButton.addEventListener('click', toggleGameMode);
 
 function newGame(){
     clickArray = [];
@@ -183,9 +187,7 @@ function getTip(){
     }
 }
 
-gameModeButton = document.querySelector('.gameMode');
-
-gameModeButton.addEventListener('click', function(){
+function toggleGameMode() {
     if (gameModeButton.classList.contains('easyMode')){
         gameModeButton.classList.remove('easyMode');
         gameModeButton.classList.add('hardMode');
@@ -197,9 +199,7 @@ gameModeButton.addEventListener('click', function(){
         gameModeButton.innerText = "Easy Mode";
         gameMode = "easy";
     }
-})
-
-const inputSubmitButton = document.querySelector('#formSubmit');
+}
 
 function inputSubmits() {
     let maxRoundInput = parseInt(document.querySelector('#maxRoundInput').value);

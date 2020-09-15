@@ -17,7 +17,6 @@ let gameMode = "easy";
 
 let balance = 100;
 const balanceDisplay = document.querySelector('#balance');
-balanceDisplay.innerText = balance;
 
 updateScore();
 
@@ -184,5 +183,3 @@ inputSubmitButton.addEventListener('click', function(){
         maxScore = maxScoreInput;
     }
 })
-
-

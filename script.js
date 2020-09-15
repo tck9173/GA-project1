@@ -34,6 +34,11 @@ newGameButton.addEventListener('click', function() {
     newGame();
 })
 
+inputSubmitButton.addEventListener('click', function(){
+    event.preventDefault()
+    inputSubmits()
+})
+
 function newGame(){
     clickArray = [];
     clickCount=0;
@@ -133,8 +138,6 @@ function roundComplete() {
     }
 }
 
-
-
 function checkSequence() {
     if (gameStarted) {
         if (clickArray[clickCount] === sequenceArray[clickCount]){
@@ -198,8 +201,7 @@ gameModeButton.addEventListener('click', function(){
 
 const inputSubmitButton = document.querySelector('#formSubmit');
 
-inputSubmitButton.addEventListener('click', function(){
-    event.preventDefault();
+function inputSubmits() {
     let maxRoundInput = parseInt(document.querySelector('#maxRoundInput').value);
     let maxScoreInput = parseInt(document.querySelector('#maxScoreInput').value);
     if (maxRoundInput > 0){
@@ -208,4 +210,4 @@ inputSubmitButton.addEventListener('click', function(){
     if (maxScoreInput >0){
         maxScore = maxScoreInput;
     }
-})
+}

@@ -7,13 +7,19 @@ let roundCount = 1;
 let sequenceArray = [];
 let clickCount = 0;
 let score = 0;
-updateScore();
+
 let maxRound = 5;
 let maxScore = 5;
 let gameStarted = false;
 let glassCount = 3;
 let glassIndex = 2;
 let gameMode = "easy";
+
+let balance = 100;
+const balanceDisplay = document.querySelector('#balance');
+balanceDisplay.innerText = balance;
+
+updateScore();
 
 const newRoundButton = document.querySelector('.newRound')
 newRoundButton.addEventListener('click', function() {
@@ -42,6 +48,7 @@ function newGame(){
 
 function updateScore() {
     scoreDisplay.innerText = score;
+    balanceDisplay.innerText = balance;
 }
 
 function createSequence(){
@@ -84,7 +91,6 @@ function glassEventListener(i) {
     glassArray[i].addEventListener('click', function(){
         clickArray[clickCount]=i;
         clicked(i);
-        //console.log(`Click count: ${clickCount} Round count: ${roundCount}`);
         setTimeout(checkSequence,200);
     })
 }
@@ -103,6 +109,7 @@ function roundComplete() {
     clickCount=0;
     roundCount=1;
     if (score<=maxScore){
+        balance -= 5;
         confirm("Alright, I will pour you another");
         if (gameMode === "hard" && !gameStarted){
             let newGlass = document.createElement('div');
@@ -168,6 +175,14 @@ const inputSubmitButton = document.querySelector('#formSubmit');
 
 inputSubmitButton.addEventListener('click', function(){
     event.preventDefault();
-    maxRound = parseInt(document.querySelector('#maxRoundInput').value);
-    maxScore = parseInt(document.querySelector('#maxScoreInput').value);
+    let maxRoundInput = parseInt(document.querySelector('#maxRoundInput').value);
+    let maxScoreInput = parseInt(document.querySelector('#maxScoreInput').value);
+    if (maxRoundInput > 0){
+        maxRound = maxRoundInput;
+    }
+    if (maxScoreInput >0){
+        maxScore = maxScoreInput;
+    }
 })
+
+

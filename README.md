@@ -14,7 +14,7 @@ Wireframes:
 
 Screenshot:
 
-![screenshot](https://i.imgur.com/wWJlxba.png)
+![screenshot](https://i.imgur.com/45sQqZO.png)
 
 MVP: 
 
